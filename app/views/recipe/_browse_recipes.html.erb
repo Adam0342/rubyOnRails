@@ -1,0 +1,58 @@
+<%= govuk_table do |table| %>
+    <% table.with_caption(size: 'm', text: 'Recipes')
+    table.with_head do |head|
+        head.with_row do |row|
+             row.with_cell(text: 'Name')
+             row.with_cell(text: 'Ingredients')
+             row.with_cell(text: 'Steps')
+             row.with_cell(text: 'Allergens')
+             row.with_cell(text: 'Additional Information')
+        end
+    end %>
+
+    <% Recipe.all.each do |recipe|
+        table.with_body do |body|
+            body.with_row do |row|
+                row.with_cell(text: recipe[:name])
+                row.with_cell do %>
+                    <ul>
+                        <% eval(recipe[:ingredients]).each do |ingredient, amount| %>
+                            <li><%= amount %>g <%= ingredient %></li>
+                        <% end %>
+                    </ul>
+                <% end
+                row.with_cell do %>
+                    <ol>
+                        <% eval(recipe[:steps]).each do |steps| %>
+                            <li><%= steps %></li>
+                        <% end %>
+                    </ol>
+                <% end
+                row.with_cell do %>
+                    <ul>
+                        <% if recipe[:allergens] != nil
+                            user_allergens = []
+                            eval(recipe[:allergens]).each do |recipe_allergen|
+                                eval(UserRecipe.find_by(user_id: session[:user_id])[:user_allergens]).each do |user_allergen|
+                                    if recipe_allergen == user_allergen
+                                        user_allergens.append(user_allergen)
+                                    end
+                                end
+                            end
+                            if user_allergens != []
+                                %><%= govuk_tag(text: "Allergen", colour: "red") %><%
+                            end
+                            eval(recipe[:allergens]).each do |allergen| %>
+                                <li><%= allergen %></li>
+                            <% end 
+                        end %>
+                    </ul>
+                <% end 
+                row.with_cell(text: recipe[:info])
+                row.with_cell do %>                        
+                    <div> <%= govuk_button_to('Add', 'personal_list_manage', value: recipe[:id], name: "add") %> </div>
+                <% end
+            end
+        end
+    end
+end %>

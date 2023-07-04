@@ -1,16 +1,26 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>AppTest</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<html lang="en" class="govuk-template ">
+    <head>
+        <title>menu planner</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <%= csrf_meta_tags %>
+        <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-  </head>
-
-  <body>
-    <%= yield %>
-  </body>
+        <%= stylesheet_link_tag 'application' %>
+        <%= stylesheet_link_tag 'govuk-frontend-4.6.0.min' %>
+        <%= javascript_importmap_tags %>
+    </head>
+    <body class="govuk-template__body">
+        <script>
+            document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
+        </script>
+        <div class="govuk-width-container">
+            <%= yield %>
+        </div>
+        <%= javascript_include_tag 'govuk-frontend-4.6.0.min' %>
+        <script>
+            window.GOVUKFrontend.initAll()
+            console.log("init all run")
+        </script>
+    </body>
 </html>

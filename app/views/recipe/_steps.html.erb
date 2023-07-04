@@ -1,0 +1,8 @@
+<%= form_with url: '#', method: :POST do |f| %>
+<section class="govuk-grid-column-full">
+    <div class="govuk-grid-column-full">
+        <%= f.label :step, "Step", class: "govuk-label step" %>
+        <%= f.text_field :step, class: "govuk-input", multiple: true %>
+    </div>
+</section>
+<% end %>

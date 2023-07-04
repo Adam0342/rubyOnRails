@@ -1,0 +1,7 @@
+<%= govuk_header(service_name: "Menu planner") do |header|
+header.with_navigation_item(text: "Home", href: "root_path", active: false)
+header.with_navigation_item(text: "Recipe", href: "recipe", active: false)
+header.with_navigation_item(text: "Add recipe", href: "add_recipe", active: false)
+
+end %>
+<%= govuk_phase_banner(tag: { text: "Alpha" }, text: "This is a new service – your feedback will help us to improve it. ") %>

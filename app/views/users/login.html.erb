@@ -1,0 +1,16 @@
+<%= render 'shared/head' %>
+<h1 class="govuk-heading-l">Login</h1>
+
+<% flash.each do |type, msg| %>
+    <%= govuk_inset_text(text: msg) %>
+<% end %>
+
+<%= form_with url: 'login_path', method: :POST do |f| %>
+    <% token_tag %>
+    <%= f.govuk_text_field :username %>
+    <%= f.govuk_password_field :password %>
+    <%= f.govuk_submit "Login" %>
+<% end %>
+
+<%= govuk_button_link_to('Register', 'register', {inverse: true}) %>
+<%= govuk_button_link_to('Home', 'root_path', {inverse: true}) %>

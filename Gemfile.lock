@@ -91,6 +91,19 @@ GEM
     erubi (1.12.0)
     globalid (1.1.0)
       activesupport (>= 5.0)
+    govuk-components (4.0.0)
+      html-attributes-utils (~> 1.0.0, >= 1.0.0)
+      pagy (~> 6.0)
+      view_component (~> 3.0.0)
+    govuk_design_system_formbuilder (4.0.0)
+      actionview (>= 6.1)
+      activemodel (>= 6.1)
+      activesupport (>= 6.1)
+      html-attributes-utils (~> 1)
+    govuk_template (0.26.0)
+      rails (>= 3.1)
+    html-attributes-utils (1.0.0)
+      activesupport (>= 6.1.4.4)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     importmap-rails (1.2.1)
@@ -128,9 +141,11 @@ GEM
     nio4r (2.5.9)
     nokogiri (1.15.2-arm64-darwin)
       racc (~> 1.4)
-    pg (1.5.3)
+    nokogiri (1.15.2-x64-mingw-ucrt)
+      racc (~> 1.4)
+    pagy (6.0.4)
     public_suffix (5.0.1)
-    puma (5.6.5)
+    puma (5.6.6)
       nio4r (~> 2.0)
     racc (1.7.1)
     rack (2.2.7)
@@ -181,16 +196,19 @@ GEM
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
     sqlite3 (1.6.3-arm64-darwin)
+    sqlite3 (1.6.3-x64-mingw-ucrt)
     stimulus-rails (1.2.1)
       railties (>= 6.0.0)
     thor (1.2.2)
     timeout (0.3.2)
-    turbo-rails (1.4.0)
-      actionpack (>= 6.0.0)
-      activejob (>= 6.0.0)
-      railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    tzinfo-data (1.2023.3)
+      tzinfo (>= 1.0.0)
+    view_component (3.0.0)
+      activesupport (>= 5.2.0, < 8.0)
+      concurrent-ruby (~> 1.0)
+      method_source (~> 1.0)
     web-console (4.2.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -210,23 +228,25 @@ GEM
 
 PLATFORMS
   arm64-darwin-22
+  x64-mingw-ucrt
 
 DEPENDENCIES
   bcrypt (~> 3.1.7)
   bootsnap
   capybara
   debug
+  govuk-components
+  govuk_design_system_formbuilder
+  govuk_template
   importmap-rails
   jbuilder
-  nokogiri
-  pg
   puma (~> 5.0)
   rails (~> 7.0.5)
+  railties
   selenium-webdriver
   sprockets-rails
   sqlite3 (~> 1.4)
   stimulus-rails
-  turbo-rails
   tzinfo-data
   web-console
   webdrivers
@@ -235,4 +255,4 @@ RUBY VERSION
    ruby 3.2.2p53
 
 BUNDLED WITH
-   2.4.10
+   2.4.14
