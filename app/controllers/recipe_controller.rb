@@ -17,7 +17,7 @@ class RecipeController < ApplicationController
     end
 
     def add_ingredient
-        render "/_ingredient"
+        render "recipe/ingredient"
     end
 
     def personal_list_manage
