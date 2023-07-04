@@ -16,10 +16,6 @@ module RecipeHelper
         return total_list
     end
 
-    def add_steps(f)
-        render "recipe/form/steps", f: f
-    end
-
     def recipe_params
         params.permit(:name.to_s, :ingredients.to_s, :steps.to_s, :allergens.to_s, :info.to_s)
     end
