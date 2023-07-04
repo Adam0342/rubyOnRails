@@ -1,0 +1,14 @@
+<%= form_with url: '#', method: :POST do |f| %>
+<section class="govuk-grid-column-full">
+    <form>
+    <div class="govuk-grid-column-one-quarter">
+        <%= f.label :amount, "Amount", class: "govuk-label" %>
+        <%= f.text_field :amount, class: "govuk-input" %>
+    </div>
+    <div class="govuk-grid-column-one-half">
+        <%= f.label :ingredient, "Ingredients", class: "govuk-label" %>
+        <% num = 1 %>
+        <%= f.text_field :ingredient, class: "govuk-input" %>
+    </div>
+</section>
+<% end %>

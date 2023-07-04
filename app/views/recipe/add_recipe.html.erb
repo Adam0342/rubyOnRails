@@ -1,0 +1,60 @@
+<%= render 'shared/head' %>
+<h1 class='govuk-heading-l'>Add recipe</h1>
+
+<%= form_with url: '#', method: :POST do |f| %>
+    <div class="govuk-grid-row govuk-grid-column-full">
+        <div class="govuk-grid-column-one-quarter">
+            <%= f.label :name, "Name", class: "govuk-label" %>
+            <%= f.text_field :name, class: "govuk-input" %>
+        </div>
+        
+        <div class="govuk-grid-column-full">
+            <%= f.label "Ingredients", class: "govuk-label" %>            
+            <button type='button' class='govuk-button' id='add_ingtedients'>Add ingredient</button>
+        </div>
+
+        <div class="govuk-grid-column-full">
+            <%= f.label "Steps", class: "govuk-label" %>
+            <%= add_steps(f) %>
+        </div>
+
+        <div class="govuk-grid-column-full">
+            <%= f.label :allergens, "Allergens", class: "govuk-label" %>
+            <%= allergens = [
+                OpenStruct.new(id: 1, name: '1'),
+                OpenStruct.new(id: 2, name: '2'),
+                OpenStruct.new(id: 3, name: '3')
+            ]
+            f.govuk_collection_check_boxes :allergens, allergens, :id, :name %>
+        </div>
+        <div class="govuk-grid-column-full">
+            <%= f.label :info, "Additional information", class: "govuk-label" %>
+            <%= f.text_field :info, class: "govuk-input" %>
+        </div>
+    </div>
+    
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-full">
+            <%= f.submit "Submit", class: "govuk-button" %>
+        </div>
+    </div>
+<% end %>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const renderButton = document.getElementById('add_ingtedients');
+    
+        renderButton.addEventListener('click', () => {
+          const xhr = new XMLHttpRequest();
+          xhr.open('GET', '/add_ingredient', true);
+          xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+          xhr.onload = () => {
+            if (xhr.status === 200) {
+                console.table(xhr)
+                renderButton.insertAdjacentHTML('beforebegin', xhr.responseText);
+            }
+        };
+            xhr.send();
+        });
+    });
+</script>

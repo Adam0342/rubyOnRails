@@ -1,0 +1,31 @@
+<% user = UserRecipe.find_by(user_id: session[:user_id])
+total_hash = total_ingredient %>
+
+<%= govuk_table do |table| %>
+    <% table.with_caption(size: 'm', text: 'Ingredient')
+    table.with_head do |head|
+        head.with_row do |row|
+            row.with_cell(text: 'Name')
+            row.with_cell(text: 'Quantity')
+            row.with_cell(text: 'Allergen')
+            row.with_cell(text: 'other')
+            row.with_cell(text: 'other')
+        end
+    end %>
+
+    <% total_hash.each do |ingredient_name, ingredient_amount|
+        table.with_body do |body|
+            body.with_row do |row|
+                row.with_cell(text: ingredient_name)
+                row.with_cell(text: ingredient_amount)
+                row.with_cell do
+                    eval(user[:user_allergens]).each do |allergen|
+                        if allergen == ingredient_name
+                            %><%= govuk_tag(text: "Allergen", colour: "red") %><%
+                        end
+                    end
+                end
+            end
+        end
+    end
+end %>

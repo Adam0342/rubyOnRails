@@ -1,0 +1,38 @@
+<%= render 'shared/head' %>
+<h1 class="govuk-heading-l">Home</h1>
+
+<% if session[:user_id] != nil &&
+      User.find_by(id: session[:user_id]) != nil %>
+  <% @user = User.find_by(id: session[:user_id]) %>
+  <% govuk_inset_text do %>
+    <h2 class='govuk-heading-m'>User Details - temp</h2>
+    <ul>
+      <li class='govuk-body-m'>Username: <%= @user.username %></li>
+      <li class='govuk-body-m'>Email: <%= @user.email %></li>
+    </ul>
+  <% end %>
+<% end %>
+
+<%= govuk_button_link_to('Register', 'register', { inverse: true }) %>
+<%= govuk_button_link_to('Log in', 'login', { inverse: true }) %>
+
+<% if session[:user_id] != nil &&
+      User.find_by(id: session[:user_id]) != nil %>
+  <%= govuk_button_link_to('Recipe', 'recipe', { inverse: true }) %>
+<% else %>
+  <%= govuk_button_link_to('Recipe', '', { disabled: true }) %>
+<% end %>
+
+<%= govuk_button_to('Log out', 'destroy', { inverse: true }) %>
+
+<%= form_with(url: 'allergens', method: :POST) do |f| %>
+    <%= f.govuk_check_boxes_fieldset :allergies, legend: { text: "allergies?", size: "m" } do %>
+        <%= f.govuk_check_box :allergies, :a, label: {text: "a"} %>
+        <%= f.govuk_check_box :allergies, :b, label: {text: "b"} %>
+        <%= f.govuk_check_box :allergies, :c, label: {text: "c"} %>
+        <%= f.govuk_check_box :allergies, :d, label: {text: "d"} %>
+        <%= f.govuk_check_box :allergies, :e, label: {text: "e"} %>
+        <%= f.govuk_check_box :allergies, :f, label: {text: "f"} %>
+        <%= f.submit 'Submit', class: 'govuk-button govuk-button--primary' %>
+    <% end %>
+<% end %>
