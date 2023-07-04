@@ -15,7 +15,8 @@ Rails.application.routes.draw do
     get 'recipe', to: 'recipe#index'
     get 'recipe_personal', to: 'recipe#view-personal-list'
     get 'add_recipe', to: 'recipe#add_recipe'
-    post 'add_recipe', to: 'recipe#'
+    post 'complete_recipe', to: 'recipe#complete_recipe'
 
     get 'add_ingredient', to: 'recipe#add_ingredient'
+    get 'add_steps', to: 'recipe#add_steps'
 end

@@ -1,7 +1,7 @@
 <%= render 'shared/head' %>
 <h1 class='govuk-heading-l'>Add recipe</h1>
 
-<%= form_with url: '#', method: :POST do |f| %>
+<%= form_with url: 'complete_recipe', method: :POST do |f| %>
     <div class="govuk-grid-row govuk-grid-column-full">
         <div class="govuk-grid-column-one-quarter">
             <%= f.label :name, "Name", class: "govuk-label" %>
@@ -15,15 +15,18 @@
 
         <div class="govuk-grid-column-full">
             <%= f.label "Steps", class: "govuk-label" %>
-            <%= add_steps(f) %>
+            <button type='button' class='govuk-button' id='add_steps'>Add step</button>
         </div>
 
         <div class="govuk-grid-column-full">
             <%= f.label :allergens, "Allergens", class: "govuk-label" %>
             <%= allergens = [
-                OpenStruct.new(id: 1, name: '1'),
-                OpenStruct.new(id: 2, name: '2'),
-                OpenStruct.new(id: 3, name: '3')
+                OpenStruct.new(id: 1, name: 'a'),
+                OpenStruct.new(id: 2, name: 'b'),
+                OpenStruct.new(id: 3, name: 'c'),
+                OpenStruct.new(id: 1, name: 'd'),
+                OpenStruct.new(id: 2, name: 'e'),
+                OpenStruct.new(id: 3, name: 'f')
             ]
             f.govuk_collection_check_boxes :allergens, allergens, :id, :name %>
         </div>
@@ -41,6 +44,7 @@
 <% end %>
 
 <script>
+    // add ingrediet
     document.addEventListener('DOMContentLoaded', () => {
         const renderButton = document.getElementById('add_ingtedients');
     
@@ -57,4 +61,25 @@
             xhr.send();
         });
     });
+
+    // add step
+    document.addEventListener('DOMContentLoaded', () => {
+        const renderButton = document.getElementById('add_steps');
+    
+        renderButton.addEventListener('click', () => {
+          const xhr = new XMLHttpRequest();
+          xhr.open('GET', '/add_steps', true);
+          xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+          xhr.onload = () => {
+            if (xhr.status === 200) {
+                console.table(xhr)
+                renderButton.insertAdjacentHTML('beforebegin', xhr.responseText);
+            }
+        };
+            xhr.send();
+        });
+    });
+
+    // submit
+    
 </script>
