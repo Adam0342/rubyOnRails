@@ -1,7 +1,7 @@
 <%= render 'shared/head' %>
 <h1 class='govuk-heading-l'>Recipe</h1>
-<!--<div> Recipe = <%= UserRecipe.find_by(user_id: session[:user_id])[:recipe_id] %> </div>
-<div> Allergens = <%= UserRecipe.find_by(user_id: session[:user_id])[:user_allergens] %> </div>-->
+<div> Recipe = <%= UserRecipe.find_by(user_id: session[:user_id])[:recipe_id] %> </div>
+<div> Allergens = <%= UserRecipe.find_by(user_id: session[:user_id])[:user_allergens] %> </div>
 <%= govuk_tabs(title: "Menu") do |c| %>
     <%= c.with_tab(label: 'Browse recipes') do %>
         <%= render 'recipe/browse_recipes' %>

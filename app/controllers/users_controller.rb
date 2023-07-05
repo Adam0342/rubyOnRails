@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
     def allergens
         user = UserRecipe.find_by(user_id: session[:user_id])
-        user.update(user_allergens: params[:allergies])
+        user.update(user_allergens: params[:allergies].drop(1))
         user.save
     end
 
