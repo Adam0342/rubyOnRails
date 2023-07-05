@@ -27,12 +27,9 @@
 
 <%= form_with(url: 'allergens', method: :POST) do |f| %>
     <%= f.govuk_check_boxes_fieldset :allergies, legend: { text: "allergies?", size: "m" } do %>
-        <%= f.govuk_check_box :allergies, :a, label: {text: "a"} %>
-        <%= f.govuk_check_box :allergies, :b, label: {text: "b"} %>
-        <%= f.govuk_check_box :allergies, :c, label: {text: "c"} %>
-        <%= f.govuk_check_box :allergies, :d, label: {text: "d"} %>
-        <%= f.govuk_check_box :allergies, :e, label: {text: "e"} %>
-        <%= f.govuk_check_box :allergies, :f, label: {text: "f"} %>
+        <%['a', 'b', 'c', 'd', 'e', 'f'].each do |l|%>
+			<%= f.govuk_check_box :allergies, l, label: {text: l} %>
+		<% end %>
         <%= f.submit 'Submit', class: 'govuk-button govuk-button--primary' %>
     <% end %>
 <% end %>

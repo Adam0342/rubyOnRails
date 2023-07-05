@@ -14,7 +14,7 @@ class RecipeController < ApplicationController
 
     def complete_recipe
         puts "\n\n\n #{params} \n\n\n"
-        recipe = Recipe.create(:name => params[:name].to_s, :ingredients => params[:ingredient].zip(params[:amount]).to_h.to_s, :steps => params[:step].to_s, :allergens => params[:allergens].to_s, :info => params[:info].to_s)
+        recipe = Recipe.create(:name => params[:name].to_s, :ingredients => params[:ingredient].zip(params[:amount]).to_h.to_s, :steps => params[:step].to_s, :allergens => params[:allergens].drop(1).to_s, :info => params[:info].to_s)
 
         if recipe.save
             puts "RECIPE CREATED"

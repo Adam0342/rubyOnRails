@@ -21,12 +21,12 @@
         <div class="govuk-grid-column-full">
             <%= f.label :allergens, "Allergens", class: "govuk-label" %>
             <%= allergens = [
-                OpenStruct.new(id: 1, name: 'a'),
-                OpenStruct.new(id: 2, name: 'b'),
-                OpenStruct.new(id: 3, name: 'c'),
-                OpenStruct.new(id: 1, name: 'd'),
-                OpenStruct.new(id: 2, name: 'e'),
-                OpenStruct.new(id: 3, name: 'f')
+                OpenStruct.new(id: 'a', name: 'a'),
+                OpenStruct.new(id: 'b', name: 'b'),
+                OpenStruct.new(id: 'c', name: 'c'),
+                OpenStruct.new(id: 'd', name: 'd'),
+                OpenStruct.new(id: 'e', name: 'e'),
+                OpenStruct.new(id: 'f', name: 'f')
             ]
             f.govuk_collection_check_boxes :allergens, allergens, :id, :name %>
         </div>
